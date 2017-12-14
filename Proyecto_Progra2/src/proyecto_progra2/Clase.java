@@ -5,16 +5,20 @@
  */
 package proyecto_progra2;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Francisco Santos
  */
-public class Clase {
+public class Clase implements Serializable{
     private String Nombre;
-    ArrayList<Variables> variables = new ArrayList();
-
+    private ArrayList<Atributo>atributos= new ArrayList();
+    private ArrayList<Clase>herencia=new ArrayList<>();
+    private ArrayList<Metodo>metodos=new ArrayList<>();
+    private static final long SerialVersionUID=7777L;
+    
     public Clase() {
     }
 
@@ -30,17 +34,29 @@ public class Clase {
         this.Nombre = Nombre;
     }
 
-    public ArrayList<Variables> getVariables() {
-        return variables;
+    public ArrayList<Atributo> getAtributos() {
+        return atributos;
     }
 
-    public void setVariables(ArrayList<Variables> variables) {
-        this.variables = variables;
+    public void setAtributos(ArrayList<Atributo> atributos) {
+        this.atributos = atributos;
     }
 
-    @Override
-    public String toString() {
-        return Nombre;
+    public ArrayList<Clase> getHerencia() {
+        return herencia;
     }
+
+    public void setHerencia(ArrayList<Clase> herencia) {
+        this.herencia = herencia;
+    }
+
+    public ArrayList<Metodo> getMetodos() {
+        return metodos;
+    }
+
+    public void setMetodos(ArrayList<Metodo> metodos) {
+        this.metodos = metodos;
+    }
+    
     
 }
