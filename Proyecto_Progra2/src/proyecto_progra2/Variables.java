@@ -5,41 +5,45 @@
  */
 package proyecto_progra2;
 
+import java.util.ArrayList;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Francisco Santos
  */
 public class Variables {
-    private String nombre;
-    private Object tipo;
+    ArrayList<JLabel>lista=new ArrayList();
+    JPanel clase;
 
     public Variables() {
     }
 
-    public Variables(String nombre, Object tipo) {
-        this.nombre = nombre;
-        this.tipo = tipo;
+    public Variables(JPanel clase) {
+        this.clase = clase;
     }
 
-    public String getNombre() {
-        return nombre;
+    public JPanel getClase() {
+        return clase;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setClase(JPanel clase) {
+        this.clase = clase;
+    }
+    
+
+    public ArrayList<JLabel> getLista() {
+        return lista;
     }
 
-    public Object getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Object tipo) {
-        this.tipo = tipo;
+    public void setLista(ArrayList<JLabel> lista) {
+        this.lista = lista;
     }
 
     @Override
     public String toString() {
-        return nombre;
+        return  lista.get(0).getText();
     }
     
     

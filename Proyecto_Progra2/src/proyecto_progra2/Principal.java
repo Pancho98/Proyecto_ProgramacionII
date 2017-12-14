@@ -5,27 +5,65 @@
  */
 package proyecto_progra2;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Color;
-import java.awt.event.ComponentListener;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Desktop;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.*;
+import java.awt.Dimension;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.font.TextAttribute;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JColorChooser;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTree;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.TransferHandler;
+import javax.swing.WindowConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreeSelectionModel;
 
 /**
  *
@@ -59,10 +97,15 @@ public class Principal extends javax.swing.JFrame {
         jt_clases = new javax.swing.JTree();
         jp_diagrama = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tp_uml = new javax.swing.JTextArea();
+        jMenuBar2 = new javax.swing.JMenuBar();
         Denominar = new javax.swing.JDialog();
         jLabel2 = new javax.swing.JLabel();
         tf_clase = new javax.swing.JTextField();
@@ -77,11 +120,60 @@ public class Principal extends javax.swing.JFrame {
         mi_agregaratributo = new javax.swing.JMenuItem();
         mi_eliminarArbol = new javax.swing.JMenuItem();
         mi_eliminarAtributo = new javax.swing.JMenuItem();
-        mi_datosAtributo = new javax.swing.JMenuItem();
         mi_agregarMetodo = new javax.swing.JMenuItem();
         mi_eliminarMetodo = new javax.swing.JMenuItem();
-        mi_descripcionMetodo = new javax.swing.JMenuItem();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        mi_pegar = new javax.swing.JMenuItem();
         jd_herencia = new javax.swing.JDialog();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jl_padre = new javax.swing.JList<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jl_hijo = new javax.swing.JList<>();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        jd_atributos = new javax.swing.JDialog();
+        tf_variable = new javax.swing.JTextField();
+        btn_crearpropiedad = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        cb_tipo = new javax.swing.JComboBox<>();
+        cb_visibilidad = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jd_metodos = new javax.swing.JDialog();
+        btn_crearmetodo = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        tf_metodo = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        cb_return = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
+        cb_visivilidad2 = new javax.swing.JComboBox<>();
+        jLabel15 = new javax.swing.JLabel();
+        añadir = new javax.swing.JButton();
+        jMenuBar3 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuBar4 = new javax.swing.JMenuBar();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuBar5 = new javax.swing.JMenuBar();
+        jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuBar6 = new javax.swing.JMenuBar();
+        jMenu8 = new javax.swing.JMenu();
+        jMenu9 = new javax.swing.JMenu();
+        jMenuBar7 = new javax.swing.JMenuBar();
+        jMenu10 = new javax.swing.JMenu();
+        jMenu11 = new javax.swing.JMenu();
+        jMenuBar8 = new javax.swing.JMenuBar();
+        jMenu12 = new javax.swing.JMenu();
+        jMenu13 = new javax.swing.JMenu();
+        jMenuBar9 = new javax.swing.JMenuBar();
+        jMenu14 = new javax.swing.JMenu();
+        jMenu15 = new javax.swing.JMenu();
+        jMenuBar10 = new javax.swing.JMenuBar();
+        jMenu16 = new javax.swing.JMenu();
+        jMenu17 = new javax.swing.JMenu();
         bt_inicio = new javax.swing.JButton();
         bt_if = new javax.swing.JButton();
         jp_UML = new javax.swing.JPanel();
@@ -96,12 +188,15 @@ public class Principal extends javax.swing.JFrame {
         bt_generar = new javax.swing.JButton();
         bt_Componentes = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Clases");
         jt_clases.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
@@ -113,11 +208,11 @@ public class Principal extends javax.swing.JFrame {
         jp_diagrama.setLayout(jp_diagramaLayout);
         jp_diagramaLayout.setHorizontalGroup(
             jp_diagramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 792, Short.MAX_VALUE)
+            .addGap(0, 868, Short.MAX_VALUE)
         );
         jp_diagramaLayout.setVerticalGroup(
             jp_diagramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 524, Short.MAX_VALUE)
         );
 
         jButton1.setText("Nueva Clase");
@@ -126,12 +221,46 @@ public class Principal extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-
-        jButton2.setText("Herencia");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Codigo Genereado");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
 
         jButton6.setText("Pegar");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
+
+        jButton8.setText("Herencia");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+        });
+
+        jButton2.setText("Pdf");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
+        jButton9.setText("Imagen");
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton9MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,17 +270,26 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton5)
-                            .addComponent(jButton1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton6)
-                            .addComponent(jButton2))
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton8)
                         .addGap(29, 29, 29))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButton5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton6))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton9)
+                                .addGap(8, 8, 8)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jp_diagrama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -164,29 +302,45 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(75, 75, 75)
+                    .addComponent(jButton8))
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
                     .addComponent(jButton6))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton9))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jp_diagrama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Sketch 1", jPanel1);
+        jTabbedPane1.addTab("UML", jPanel1);
+
+        tp_uml.setColumns(20);
+        tp_uml.setRows(5);
+        jScrollPane5.setViewportView(tp_uml);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1067, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 528, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Diagrama", jPanel2);
+        jTabbedPane1.addTab("Codigo", jPanel2);
+
+        jd_diagramas.setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout jd_diagramasLayout = new javax.swing.GroupLayout(jd_diagramas.getContentPane());
         jd_diagramas.getContentPane().setLayout(jd_diagramasLayout);
@@ -276,36 +430,291 @@ public class Principal extends javax.swing.JFrame {
         );
 
         mi_agregaratributo.setText("Agregar Atributo");
+        mi_agregaratributo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_agregaratributoActionPerformed(evt);
+            }
+        });
         Uml_pop.add(mi_agregaratributo);
 
-        mi_eliminarArbol.setText("jMenuItem9");
+        mi_eliminarArbol.setText("Eliminar Arbol");
+        mi_eliminarArbol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_eliminarArbolActionPerformed(evt);
+            }
+        });
         Uml_pop.add(mi_eliminarArbol);
 
-        mi_eliminarAtributo.setText("jMenuItem10");
+        mi_eliminarAtributo.setText("Eliminar Atributo");
+        mi_eliminarAtributo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_eliminarAtributoActionPerformed(evt);
+            }
+        });
         Uml_pop.add(mi_eliminarAtributo);
 
-        mi_datosAtributo.setText("jMenuItem11");
-        Uml_pop.add(mi_datosAtributo);
-
-        mi_agregarMetodo.setText("jMenuItem12");
+        mi_agregarMetodo.setText("Agregar Metodo");
+        mi_agregarMetodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_agregarMetodoActionPerformed(evt);
+            }
+        });
         Uml_pop.add(mi_agregarMetodo);
 
-        mi_eliminarMetodo.setText("jMenuItem13");
+        mi_eliminarMetodo.setText("Eliminar Metodo");
+        mi_eliminarMetodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_eliminarMetodoActionPerformed(evt);
+            }
+        });
         Uml_pop.add(mi_eliminarMetodo);
 
-        mi_descripcionMetodo.setText("jMenuItem14");
-        Uml_pop.add(mi_descripcionMetodo);
+        mi_pegar.setText("Pegar");
+        mi_pegar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_pegarActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(mi_pegar);
+
+        jl_padre.setModel(new DefaultListModel());
+        jScrollPane3.setViewportView(jl_padre);
+
+        jl_hijo.setModel(new DefaultListModel());
+        jScrollPane4.setViewportView(jl_hijo);
+
+        jLabel3.setText("Padre");
+
+        jLabel4.setText("Hijas");
+
+        jButton7.setText("Agregar");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_herenciaLayout = new javax.swing.GroupLayout(jd_herencia.getContentPane());
         jd_herencia.getContentPane().setLayout(jd_herenciaLayout);
         jd_herenciaLayout.setHorizontalGroup(
             jd_herenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_herenciaLayout.createSequentialGroup()
+                .addGroup(jd_herenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_herenciaLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jd_herenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(119, 119, 119)
+                        .addGroup(jd_herenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jd_herenciaLayout.createSequentialGroup()
+                        .addGap(233, 233, 233)
+                        .addComponent(jButton7)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         jd_herenciaLayout.setVerticalGroup(
             jd_herenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_herenciaLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jd_herenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(jd_herenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4))
+                .addGap(39, 39, 39)
+                .addComponent(jButton7)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
+
+        tf_variable.setFont(new java.awt.Font("AR CENA", 0, 18)); // NOI18N
+
+        btn_crearpropiedad.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        btn_crearpropiedad.setText("Crear");
+        btn_crearpropiedad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_crearpropiedadMouseClicked(evt);
+            }
+        });
+
+        jLabel8.setText("Nombre Variable");
+
+        cb_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Int", "String", "Double", "char", "Long", "boolean" }));
+
+        cb_visibilidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Public", "Private", "Protected" }));
+
+        jLabel10.setText("Tipo");
+
+        jLabel11.setText("Visibilidad");
+
+        javax.swing.GroupLayout jd_atributosLayout = new javax.swing.GroupLayout(jd_atributos.getContentPane());
+        jd_atributos.getContentPane().setLayout(jd_atributosLayout);
+        jd_atributosLayout.setHorizontalGroup(
+            jd_atributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_atributosLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(jd_atributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jd_atributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cb_visibilidad, 0, 120, Short.MAX_VALUE)
+                    .addComponent(cb_tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tf_variable))
+                .addGap(0, 55, Short.MAX_VALUE))
+            .addGroup(jd_atributosLayout.createSequentialGroup()
+                .addGap(159, 159, 159)
+                .addComponent(btn_crearpropiedad)
+                .addGap(0, 178, Short.MAX_VALUE))
+        );
+        jd_atributosLayout.setVerticalGroup(
+            jd_atributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_atributosLayout.createSequentialGroup()
+                .addGap(0, 59, Short.MAX_VALUE)
+                .addGroup(jd_atributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_atributosLayout.createSequentialGroup()
+                        .addGroup(jd_atributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_atributosLayout.createSequentialGroup()
+                                .addGroup(jd_atributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(tf_variable, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8))
+                                .addGap(31, 31, 31)
+                                .addComponent(cb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(39, 39, 39)
+                        .addComponent(cb_visibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(37, 37, 37)
+                .addComponent(btn_crearpropiedad)
+                .addGap(0, 52, Short.MAX_VALUE))
+        );
+
+        btn_crearmetodo.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        btn_crearmetodo.setText("Crear");
+        btn_crearmetodo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_crearmetodoMouseClicked(evt);
+            }
+        });
+
+        jLabel12.setText("Nombre Metodo");
+
+        jLabel13.setText("Return");
+
+        cb_return.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Void", "Int", "String", "Double", "Long", "char", "boolean", "" }));
+
+        jLabel14.setText("Visibilidad");
+
+        cb_visivilidad2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Public", "Private", "Protected" }));
+
+        jLabel15.setText("Parametro");
+
+        añadir.setText("Añadir");
+        añadir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                añadirMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_metodosLayout = new javax.swing.GroupLayout(jd_metodos.getContentPane());
+        jd_metodos.getContentPane().setLayout(jd_metodosLayout);
+        jd_metodosLayout.setHorizontalGroup(
+            jd_metodosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_metodosLayout.createSequentialGroup()
+                .addGroup(jd_metodosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_metodosLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jd_metodosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15))
+                        .addGap(105, 105, 105)
+                        .addGroup(jd_metodosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_metodo)
+                            .addComponent(cb_return, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cb_visivilidad2, 0, 146, Short.MAX_VALUE)
+                            .addComponent(añadir, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jd_metodosLayout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(btn_crearmetodo)))
+                .addContainerGap(79, Short.MAX_VALUE))
+        );
+        jd_metodosLayout.setVerticalGroup(
+            jd_metodosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_metodosLayout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addGroup(jd_metodosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(tf_metodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
+                .addGroup(jd_metodosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13)
+                    .addComponent(cb_return, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
+                .addGroup(jd_metodosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(cb_visivilidad2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jd_metodosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(añadir))
+                .addGap(34, 34, 34)
+                .addComponent(btn_crearmetodo)
+                .addGap(22, 22, 22))
+        );
+
+        jMenu1.setText("File");
+        jMenuBar3.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar3.add(jMenu2);
+
+        jMenu4.setText("File");
+        jMenuBar4.add(jMenu4);
+
+        jMenu5.setText("Edit");
+        jMenuBar4.add(jMenu5);
+
+        jMenu6.setText("File");
+        jMenuBar5.add(jMenu6);
+
+        jMenu7.setText("Edit");
+        jMenuBar5.add(jMenu7);
+
+        jMenu8.setText("File");
+        jMenuBar6.add(jMenu8);
+
+        jMenu9.setText("Edit");
+        jMenuBar6.add(jMenu9);
+
+        jMenu10.setText("File");
+        jMenuBar7.add(jMenu10);
+
+        jMenu11.setText("Edit");
+        jMenuBar7.add(jMenu11);
+
+        jMenu12.setText("File");
+        jMenuBar8.add(jMenu12);
+
+        jMenu13.setText("Edit");
+        jMenuBar8.add(jMenu13);
+
+        jMenu14.setText("File");
+        jMenuBar9.add(jMenu14);
+
+        jMenu15.setText("Edit");
+        jMenuBar9.add(jMenu15);
+
+        jMenu16.setText("File");
+        jMenuBar10.add(jMenu16);
+
+        jMenu17.setText("Edit");
+        jMenuBar10.add(jMenu17);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -325,12 +734,17 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jp_UML.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jp_UML.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jp_UMLMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_UMLLayout = new javax.swing.GroupLayout(jp_UML);
         jp_UML.setLayout(jp_UMLLayout);
         jp_UMLLayout.setHorizontalGroup(
             jp_UMLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 656, Short.MAX_VALUE)
+            .addGap(0, 661, Short.MAX_VALUE)
         );
         jp_UMLLayout.setVerticalGroup(
             jp_UMLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -388,19 +802,62 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel6.setText("Componentes");
 
+        jButton4.setText("Clear");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
         jMenu3.setText("Navegar");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
 
         jMenuItem3.setText("Crear UML's");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem3);
 
         jMenuItem4.setText("Imprimir");
         jMenu3.add(jMenuItem4);
 
         jMenuItem5.setText("Guardar Imagen");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem5);
 
         jMenuItem7.setText("Guardar PDF");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem7);
+
+        jMenuItem2.setText("Guardar Diagrama");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
+        jMenuItem6.setText("Cargar Diagrama");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem6);
 
         jMenuBar1.add(jMenu3);
 
@@ -412,33 +869,32 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Conector)
-                                .addGap(99, 99, 99)
-                                .addComponent(jLabel9))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(bt_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bt_proceso, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7))
-                                .addGap(91, 91, 91)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5)
-                                    .addComponent(bt_if, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bt_Componentes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                        .addGap(136, 136, 136))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bt_ConectorH, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58)
-                        .addComponent(bt_conectorv, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bt_generar)
-                        .addGap(54, 54, 54)))
+                        .addComponent(bt_conectorv, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Conector)
+                        .addGap(99, 99, 99)
+                        .addComponent(jLabel9))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(bt_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bt_proceso, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(91, 91, 91)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
+                            .addComponent(bt_if, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bt_Componentes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                .addGap(11, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bt_generar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
                 .addComponent(jp_UML, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -473,14 +929,16 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(bt_conectorv))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(57, 57, 57)
-                                .addComponent(bt_ConectorH))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bt_generar)
-                                .addGap(47, 47, 47))))
+                                .addComponent(bt_ConectorH))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jp_UML, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jp_UML, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton4)
+                        .addGap(39, 39, 39)
+                        .addComponent(bt_generar)
+                        .addGap(47, 47, 47)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -863,9 +1321,7 @@ public class Principal extends javax.swing.JFrame {
                     fw=new FileWriter(archivo, true);
                     bw=new BufferedWriter(fw);
                     bw.write("if("+label.getText()+"){");
-                    if (contComponentes>1) {
                         
-                    }
                 } catch (IOException ex) {
                     Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -1042,6 +1498,132 @@ public class Principal extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_bt_ComponentesMouseClicked
 
+    private void mi_copiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_copiarActionPerformed
+        JLabel jl = new JLabel();
+        jl=select;
+        jl.setName(select.getName()+cont);
+        pegar.add(jl);
+        JOptionPane.showMessageDialog(jp_UML,"copiado");
+    }//GEN-LAST:event_mi_copiarActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        jd_diagramas.pack();
+        jd_diagramas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        JFileChooser jfc = new JFileChooser();
+        int op = jfc.showSaveDialog(this);
+        if (op == JFileChooser.APPROVE_OPTION) {
+            AdminUML af = new AdminUML(jfc.getSelectedFile().getPath() + ".pp");
+            for (JLabel label : labels) {
+                af.getLabels().add(label);
+            }
+            af.cargarArchivo();
+            try {
+                af.escribirArchivo();
+            } catch (IOException ex) {
+
+            }
+            JOptionPane.showMessageDialog(this, "Flujo guardado exitosamente");
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        JFileChooser jfc = new JFileChooser();
+        int op = jfc.showOpenDialog(jp_UML);
+        if (op == JFileChooser.APPROVE_OPTION) {
+            AdminUML af = new AdminUML(jfc.getSelectedFile().getPath());
+            af.cargarArchivo();
+            for (final JLabel label : af.getLabels()) {
+                labels.add(label);
+                jp_UML.add(label);
+                //para poder mover un label seleccionado
+                label.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+                    public void mouseDragged(java.awt.event.MouseEvent evt) {
+                        select = label;
+                        label.setLocation(label.getLocation().x + evt.getX() - label.getWidth() / 2,
+                                label.getLocation().y + evt.getY() - label.getHeight() / 2);
+                    }
+                });
+
+                //para sacar el pop up menu con las opciones que tiene el label seleccionado
+                label.addMouseListener(new MouseListener() {
+                    public void mouseClicked(MouseEvent evt) {
+                        select = label;
+                        if (evt.isMetaDown()) {
+                            select = label;
+                            if (select.getText().equals("Inicio") || select.getText().equals("Fin")) {
+                                menu_pop.show(evt.getComponent(), evt.getX(), evt.getY());
+                            } else {
+                                menu_pop.show(evt.getComponent(), evt.getX(), evt.getY());
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        select = label;
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        select = label;
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                        select = label;
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+                        select = label;
+                    }
+                });
+            }
+            JOptionPane.showMessageDialog(jp_UML, "Flujo cargado exitosamente");
+            jp_UML.repaint();
+            menu_pop.setEnabled(true);
+        }
+        bt_generar.setEnabled(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jp_UMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jp_UMLMouseClicked
+        if(evt.isMetaDown()){
+            jPopupMenu1.show(evt.getComponent(),evt.getX(),evt.getY());
+            
+        }
+    }//GEN-LAST:event_jp_UMLMouseClicked
+
+    private void mi_pegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_pegarActionPerformed
+        for (JLabel label : pegar) { 
+            labels.add(label);
+            jp_UML.add(label);
+            label.setLocation(0, 0);
+            jp_UML.repaint();
+        }
+    }//GEN-LAST:event_mi_pegarActionPerformed
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        labels.removeAll(labels);
+        jp_UML.removeAll();
+        jp_UML.repaint();
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        GenerarPDF(tp_codigo.getText(), jp_UML, 1);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        CrearIMG(jp_UML, "jpg");
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         Clase cl = new Clase(JOptionPane.showInputDialog("Nombre de la clase"));
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(cl);
@@ -1071,26 +1653,26 @@ public class Principal extends javax.swing.JFrame {
                         mi_eliminarArbol.show(true);
                         mi_agregarMetodo.show(true);
                         mi_eliminarAtributo.show(false);
-                        mi_datosAtributo.show(false);
+                        //mi_datosAtributo.show(false);
                         mi_eliminarMetodo.show(false);
-                        mi_descripcionMetodo.show(false);
+                        //mi_descripcionMetodo.show(false);
                     } else if (nodo_seleccionado.getUserObject() instanceof Propiedad) {
                         propiedad = (Propiedad) nodo_seleccionado.getUserObject();
                         mi_agregaratributo.show(false);
                         mi_eliminarArbol.show(false);
                         mi_eliminarAtributo.show(true);
-                        mi_datosAtributo.show(true);
+                        //mi_datosAtributo.show(true);
                         mi_eliminarMetodo.show(false);
-                        mi_descripcionMetodo.show(false);
+                        //mi_descripcionMetodo.show(false);
                         mi_agregarMetodo.show(false);
                     } else if (nodo_seleccionado.getUserObject() instanceof Metodo) {
                         MetodoActual = (Metodo) nodo_seleccionado.getUserObject();
                         mi_agregaratributo.show(false);
                         mi_eliminarArbol.show(false);
                         mi_eliminarAtributo.show(false);
-                        mi_datosAtributo.show(false);
+                        //mi_datosAtributo.show(false);
                         mi_eliminarMetodo.show(true);
-                        mi_descripcionMetodo.show(true);
+                        //mi_descripcionMetodo.show(true);
                         mi_agregarMetodo.show(false);
                     }
                     Uml_pop.show(evt.getComponent(), evt.getX(), evt.getY());
@@ -1118,9 +1700,9 @@ public class Principal extends javax.swing.JFrame {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 ArbolActual = arbol;
                 if ((arbol.getLocation().x + evt.getX() - arbol.getWidth() / 2) >= 0
-                        && (arbol.getLocation().x + evt.getX() - arbol.getWidth() / 2) <= 800) {
+                    && (arbol.getLocation().x + evt.getX() - arbol.getWidth() / 2) <= 800) {
                     arbol.setLocation(jt_clases.getLocation().x + evt.getX() - arbol.getWidth() / 2,
-                            arbol.getLocation().y + evt.getY() - arbol.getHeight() / 2);
+                        arbol.getLocation().y + evt.getY() - arbol.getHeight() / 2);
                     //  System.out.println(lbl_Vseparador);
                     // System.out.println(lbl_Vseparador.getName());
                 }// para que no se salga del rango
@@ -1135,16 +1717,307 @@ public class Principal extends javax.swing.JFrame {
         DefaultMutableTreeNode Raiz = (DefaultMutableTreeNode) m.getRoot();
         Raiz.add(raiz);
         m.reload();
-        //DefaultListModel M = (DefaultListModel) jl_hijo.getModel();
-        //M.addElement(cl);
-        //jl_hijo.setModel(M);
-        //jl_padre.setModel(M);
-        
+        DefaultListModel M = (DefaultListModel) jl_hijo.getModel();
+        M.addElement(cl);
+        jl_hijo.setModel(M);
+        jl_padre.setModel(M);
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void mi_copiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_copiarActionPerformed
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+         String C = imprimirNodo((TreeNode) jt_clases.getModel().getRoot());
+        C=C.toLowerCase();
+        tp_uml.setText(C);
+        JOptionPane.showMessageDialog(jp_diagrama, "El codigo Se ha generado Correctamente");
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        if (ArbolActual == null) {
+            JOptionPane.showMessageDialog(jp_diagrama, "No selecciono nada vuelva a intentar");
+        } else {
+            Clase C = new Clase(ArbolActual.getClase().getNombre() + "2.0");
+            DefaultMutableTreeNode carpetaRaiz = new DefaultMutableTreeNode(C);
+            DefaultMutableTreeNode Atributos = new DefaultMutableTreeNode("Popiedades");
+            DefaultMutableTreeNode Metodos = new DefaultMutableTreeNode("Metodos");
+            carpetaRaiz.add(Atributos);
+            carpetaRaiz.add(Metodos);
+            DefaultTreeModel modelo = new DefaultTreeModel(carpetaRaiz);
+            final Diagrama arbol = new Diagrama();
+            arbol.setClase(C);
+            arbol.setModel(modelo);
+            arbol.setName(ArbolActual.getName() + "2.0");
+            arbol.setSize(150, 150);
+            arbol.addMouseListener(new MouseListener() {
+                public void mouseClicked(MouseEvent evt) {
+                    ArbolActual = arbol;
+                    int row = arbol.getClosestRowForLocation(evt.getX(), evt.getY());
+                    arbol.setSelectionRow(row);
+                    //determinar el tipo de objeto selecionado.
+                    //contenido en el nodo seleccionado
+                    Object v1 = arbol.getSelectionPath().getLastPathComponent();//nos da la ruta y luego nos saca el final de la ruta.
+                    nodo_seleccionado = (DefaultMutableTreeNode) v1;
+                    if (evt.isMetaDown()) {
+                        if (nodo_seleccionado.getUserObject() instanceof Clase) {
+                        mi_agregaratributo.show(true);
+                        mi_eliminarArbol.show(true);
+                        mi_agregarMetodo.show(true);
+                        mi_eliminarAtributo.show(false);
+                        //mi_datosAtributo.show(false);
+                        mi_eliminarMetodo.show(false);
+                       // mi_descripcionMetodo.show(false);
+                    } else if (nodo_seleccionado.getUserObject() instanceof Propiedad) {
+                        propiedad = (Propiedad) nodo_seleccionado.getUserObject();
+                        mi_agregaratributo.show(false);
+                        mi_eliminarArbol.show(false);
+                        mi_eliminarAtributo.show(true);
+                        //mi_datosAtributo.show(true);
+                        mi_eliminarMetodo.show(false);
+                        //mi_descripcionMetodo.show(false);
+                        mi_agregarMetodo.show(false);
+                    } else if (nodo_seleccionado.getUserObject() instanceof Metodo) {
+                        MetodoActual = (Metodo) nodo_seleccionado.getUserObject();
+                        mi_agregaratributo.show(false);
+                        mi_eliminarArbol.show(false);
+                        mi_eliminarAtributo.show(false);
+                        //mi_datosAtributo.show(false);
+                        mi_eliminarMetodo.show(true);
+                        //mi_descripcionMetodo.show(true);
+                        mi_agregarMetodo.show(false);
+                    }
+                    Uml_pop.show(evt.getComponent(), evt.getX(), evt.getY());
+
+                    }
+                }
+
+                public void mouseEntered(MouseEvent arg0) {
+                    ArbolActual = arbol;
+                }
+
+                public void mouseExited(MouseEvent arg0) {
+                    ArbolActual = arbol;
+                }
+
+                public void mousePressed(MouseEvent arg0) {
+                    ArbolActual = arbol;
+                }
+
+                public void mouseReleased(MouseEvent arg0) {
+                    ArbolActual = arbol;
+                }
+            });
+            arbol.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+                public void mouseDragged(java.awt.event.MouseEvent evt) {
+                    ArbolActual = arbol;
+                    if ((arbol.getLocation().x + evt.getX() - arbol.getWidth() / 2) >= 0
+                            && (arbol.getLocation().x + evt.getX() - arbol.getWidth() / 2) <= 800) {
+                        arbol.setLocation(jt_clases.getLocation().x + evt.getX() - arbol.getWidth() / 2,
+                                arbol.getLocation().y + evt.getY() - arbol.getHeight() / 2);
+                        //  System.out.println(lbl_Vseparador);
+                        // System.out.println(lbl_Vseparador.getName());
+                    }// para que no se salga del rango
+                }
+            });
+            DefaultTreeModel m = (DefaultTreeModel) arbol.getModel();
+            DefaultMutableTreeNode Raiz = (DefaultMutableTreeNode) m.getRoot();
+            for (int i = 0; i < ArbolActual.getClase().getAtributos().size(); i++) {
+                Atributo Actual = ArbolActual.getClase().getAtributos().get(i);
+                Atributo P = new Atributo(Actual.getNombre() + "_Copia");
+                P.setTipo(P.getTipo());
+                P.setAlcance(P.getAlcance());
+                DefaultMutableTreeNode Propiedades = new DefaultMutableTreeNode(P);
+                arbol.getClase().AnadirAtributo(P);
+                ((DefaultMutableTreeNode) Raiz.getChildAt(0)).add(Propiedades);
+                m.reload();
+            }
+            for (int i = 0; i < ArbolActual.getClase().getMetodos().size(); i++) {
+                Metodo Actual = ArbolActual.getClase().getMetodos().get(i);
+                Metodo P = new Metodo();
+                P.setNombre(Actual.getNombre() + "_Copia");
+                P.setAlcance(P.getAlcance());
+                P.setListaAtributos(Actual.getListaAtributos());
+                P.setReturn(Actual.getReturn());
+                DefaultMutableTreeNode Metodo = new DefaultMutableTreeNode(P);
+                arbol.getClase().AnadirMetodo(P);
+                ((DefaultMutableTreeNode) Raiz.getChildAt(1)).add(Metodo);
+                m.reload();
+            }
+            //AGREGAMOS AL ARBOL PRINCIPAL.
+            DefaultTreeModel m_p = (DefaultTreeModel) jt_clases.getModel();
+            DefaultMutableTreeNode Raizp = (DefaultMutableTreeNode) m_p.getRoot();
+            Raizp.add(carpetaRaiz);
+            m_p.reload();
+            JOptionPane.showMessageDialog(jp_diagrama, "Se ha Agregado al Arbol principal");
+            //agrega los label
+            this.jp_diagrama.add(arbol);
+            jp_diagrama.repaint();
+        }
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void mi_agregaratributoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_agregaratributoActionPerformed
+        jd_atributos.show();
+        jd_atributos.pack();
+        jd_atributos.setVisible(true);
+        jd_atributos.setLocationRelativeTo(jd_diagramas);
+        jd_atributos.setLocationRelativeTo(jp_diagrama);
+        cb_visibilidad.enable();
+        jd_atributos.setTitle("Crear Propiedad");
+        btn_crearpropiedad.show(true);
+        cb_visibilidad.enable();
+        //btn_agregarparametros.show(false);
+    }//GEN-LAST:event_mi_agregaratributoActionPerformed
+
+    private void btn_crearpropiedadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_crearpropiedadMouseClicked
+        String Propiedad = tf_variable.getText();
+        DefaultTreeModel m = (DefaultTreeModel) ArbolActual.getModel();
+        DefaultMutableTreeNode Raiz = (DefaultMutableTreeNode) m.getRoot();
+        Atributo P = new Atributo(Propiedad);
+        P.setTipo(cb_tipo.getSelectedItem());
+        P.setAlcance(cb_visibilidad.getSelectedItem().toString());
+
+        DefaultMutableTreeNode Propiedades = new DefaultMutableTreeNode(P);
+        ArbolActual.getClase().AnadirAtributo(P);
+        ((DefaultMutableTreeNode) Raiz.getChildAt(0)).add(Propiedades);
+        m.reload();
+
+        //Lo agregamos al arbol de las clases.
+        DefaultTreeModel Principal = (DefaultTreeModel) jt_clases.getModel();
+        Principal.reload();
+        tf_variable.setText("");
+        cb_tipo.setSelectedIndex(0);
+        cb_visibilidad.setSelectedIndex(0);
+        // JOptionPane.showMessageDialog(jd_propiedad,"Propiedad creada con exito");
+
+    }//GEN-LAST:event_btn_crearpropiedadMouseClicked
+
+    private void btn_crearmetodoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_crearmetodoMouseClicked
+
+        String Nombre = tf_metodo.getText();
+        DefaultTreeModel m = (DefaultTreeModel) ArbolActual.getModel();
+        DefaultMutableTreeNode Raiz = (DefaultMutableTreeNode) m.getRoot();
+        Metodo M = new Metodo();
+        M.setReturn(cb_return.getSelectedItem().toString());
+        M.setAlcance(cb_visivilidad2.getSelectedItem().toString());
+        M_Actual = M;
+        M.setNombre(Nombre);
+        M.setListaAtributos(PARAMETROS);
+        DefaultMutableTreeNode Propiedades = new DefaultMutableTreeNode(M);
+        ArbolActual.getClase().AnadirMetodo(M);
+        ((DefaultMutableTreeNode) Raiz.getChildAt(1)).add(Propiedades);
+        m.reload();
+        //Lo agregamos al arbol de las clases.
+        DefaultTreeModel Principal = (DefaultTreeModel) jt_clases.getModel();
+        Principal.reload();
+        tf_metodo.setText("");
+        cb_visivilidad2.setSelectedIndex(0);
+        cb_return.setSelectedIndex(0);
+        PARAMETROS = new ArrayList();
+    }//GEN-LAST:event_btn_crearmetodoMouseClicked
+
+    private void añadirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_añadirMouseClicked
+         cb_visibilidad.disable();
+        añadir.show(true);
+        //  btn_crearpropiedad.show(false);
+        jd_atributos.setTitle("Crear Parametro");
+        jd_atributos.show();
+        jd_atributos.setLocationRelativeTo(jp_diagrama);
+        btn_crearpropiedad.show(true);
         
-    }//GEN-LAST:event_mi_copiarActionPerformed
+        tf_variable.setText("");
+        cb_visibilidad.setSelectedIndex(0);
+        cb_tipo.setSelectedIndex(0);
+        btn_crearpropiedad.show(false);
+    }//GEN-LAST:event_añadirMouseClicked
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        jd_herencia.pack();
+        jd_herencia.setModal(true);
+        jd_herencia.setVisible(true);
+    }//GEN-LAST:event_jButton8MouseClicked
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        if (jl_hijo.getSelectedIndex() >= 0 && jl_padre.getSelectedIndex() >= 0) {
+            DefaultListModel modeloHijo = (DefaultListModel) jl_hijo.getModel();
+            DefaultListModel modeloPadre = (DefaultListModel) jl_padre.getModel();
+            Clase C_Hija = (Clase) modeloHijo.get(jl_hijo.getSelectedIndex());
+            Clase C_Padre = (Clase) modeloPadre.get(jl_padre.getSelectedIndex());
+            if (C_Hija == C_Padre) {
+                JOptionPane.showMessageDialog(jd_herencia, "No puede heredar de si misma");
+            } else if (C_Hija.getHerencia().contains(C_Padre)) {
+                JOptionPane.showMessageDialog(jd_herencia, "La clase ya ha sido agregada");
+            } else {
+                C_Hija.AnadirHerencia(C_Padre);
+                JOptionPane.showMessageDialog(jd_herencia, "Clase agregada");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this.jd_herencia, "Seleccione Una clase padre y una Clase Hija");
+        }
+    }//GEN-LAST:event_jButton7MouseClicked
+
+    private void mi_eliminarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_eliminarArbolActionPerformed
+        int respuesta = JOptionPane.showConfirmDialog(this.jp_diagrama, "Seguro que desea eliminar?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (respuesta == JOptionPane.OK_OPTION) {
+            DefaultTreeModel m = (DefaultTreeModel) ArbolActual.getModel();
+            m.removeNodeFromParent(nodo_seleccionado);
+            m.reload();
+            jp_diagrama.remove(ArbolActual);
+            jp_diagrama.repaint();
+            JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente");
+        }
+        DefaultTreeModel Principal = (DefaultTreeModel) jt_clases.getModel();
+        Principal.reload();
+    }//GEN-LAST:event_mi_eliminarArbolActionPerformed
+
+    private void mi_eliminarAtributoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_eliminarAtributoActionPerformed
+        ArbolActual.getClase().getAtributos().remove(global);
+        int respuesta = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (respuesta == JOptionPane.OK_OPTION) {
+            ArbolActual.getClase().getAtributos().remove(global);
+
+            DefaultTreeModel m = (DefaultTreeModel) ArbolActual.getModel();
+            DefaultMutableTreeNode Raiz = (DefaultMutableTreeNode) m.getRoot();
+            ((DefaultMutableTreeNode) Raiz.getChildAt(0)).remove(nodo_seleccionado);
+
+            DefaultTreeModel Principal = (DefaultTreeModel) jt_clases.getModel();
+            m.reload();
+            Principal.reload();
+            JOptionPane.showMessageDialog(this.jp_diagrama, "Se ha eliminado correctamente la propiedad");
+        }
+    }//GEN-LAST:event_mi_eliminarAtributoActionPerformed
+
+    private void mi_agregarMetodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_agregarMetodoActionPerformed
+        jd_metodos.show();
+        jd_metodos.setLocationRelativeTo(jp_diagrama);
+        //btn_agregarparametro.enable(true);
+        btn_crearmetodo.show(true);
+    }//GEN-LAST:event_mi_agregarMetodoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void mi_eliminarMetodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_eliminarMetodoActionPerformed
+        int respuesta = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (respuesta == JOptionPane.OK_OPTION) {
+            ArbolActual.getClase().getMetodos().remove(M_Actual);
+
+            DefaultTreeModel m = (DefaultTreeModel) ArbolActual.getModel();
+            DefaultMutableTreeNode Raiz = (DefaultMutableTreeNode) m.getRoot();
+            ((DefaultMutableTreeNode) Raiz.getChildAt(1)).remove(nodo_seleccionado);
+
+            DefaultTreeModel Principal = (DefaultTreeModel) jt_clases.getModel();
+            m.reload();
+            Principal.reload();
+            JOptionPane.showMessageDialog(this.jp_diagrama, "Se ha eliminado correctamente el metodo");
+
+        }
+    }//GEN-LAST:event_mi_eliminarMetodoActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        GenerarPDF(tp_uml.getText(), jp_diagrama, 1);
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
+        CrearIMG(jp_diagrama, "jpg");
+    }//GEN-LAST:event_jButton9MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1171,7 +2044,80 @@ public class Principal extends javax.swing.JFrame {
         }
         return contenido;
     }
-    
+    public void GenerarPDF(String Codigo, JPanel Panel, int Bandera) {
+        int seleccion = 100;
+        String Ruta = "";
+        if (Bandera == 1) {
+            JFileChooser jfc = new JFileChooser();
+            FileNameExtensionFilter filtro = new FileNameExtensionFilter("Diagramas UML", "Clau");
+            seleccion = jfc.showOpenDialog(this.DialogActual);
+            Ruta = jfc.getSelectedFile().getPath();
+        } else if (Bandera == 2) {
+            Ruta = ".\\Imprimir\\" + "Prueba"+cont;
+        }
+        try {
+            Dimension d = Panel.getSize();
+            BufferedImage image = ScreenImage.createImage(Panel);
+            Graphics2D g2d = image.createGraphics();
+            Panel.print(g2d);
+            g2d.dispose();
+            try {
+                ImageIO.write(image, "jpg", new File(Ruta + "1" + ".jpg"));
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Image imagen = Image.getInstance(Ruta + "1" + ".jpg");
+            imagen.scaleAbsolute(300, 300);
+            imagen.setAlignment(Element.ALIGN_CENTER);
+//            CREAR EL DOCUMENTO SENCILLO
+            FileOutputStream archivo = new FileOutputStream(Ruta + ".pdf");
+            Document doc = new Document();
+            PdfWriter.getInstance(doc, archivo);
+            doc.open();
+            
+            doc.add(new Paragraph(Codigo));
+            doc.add(imagen);
+            
+            doc.close();
+            if (Bandera == 1) {
+                JOptionPane.showMessageDialog(DialogActual, "PDF creado");
+            }
+        } catch (Exception e) {
+
+        }
+    }
+    public String imprimirNodo(TreeNode nodo) {
+        String Clases = "";
+        for (int i = 0; i < nodo.getChildCount(); i++) {
+            Object v1 = nodo.getChildAt(i);
+            nodo_seleccionado = (DefaultMutableTreeNode) v1;
+            if (nodo_seleccionado.getUserObject() instanceof Clase) {
+                //// System.out.println("CLASE");
+                Diagrama D = new Diagrama();
+                D.setClase((Clase) nodo_seleccionado.getUserObject());
+                //System.out.println(D.GenerarCodigo());
+                Clases += D.GenerarCodigo();
+            }
+        }
+        return Clases;
+    }
+    public void CrearIMG(JPanel panel, String Extension) {
+        JFileChooser jfc = new JFileChooser();
+        int seleccion = jfc.showOpenDialog(this.DialogActual);
+        System.out.println(jfc.getSelectedFile().getPath());
+        String Ruta = jfc.getSelectedFile().getPath() + "." + Extension;
+        Dimension d = panel.getSize();
+        BufferedImage image = ScreenImage.createImage(panel);
+        Graphics2D g2d = image.createGraphics();
+        panel.print(g2d);
+        g2d.dispose();
+        try {
+            ImageIO.write(image, Extension, new File(Ruta));
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(DialogActual, "Imagen Creada Exsitosamente");
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1208,6 +2154,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel Conector;
     private javax.swing.JDialog Denominar;
     private javax.swing.JPopupMenu Uml_pop;
+    private javax.swing.JButton añadir;
     private javax.swing.JButton bt_Componentes;
     private javax.swing.JButton bt_ConectorH;
     private javax.swing.JButton bt_conectorv;
@@ -1215,32 +2162,86 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton bt_if;
     private javax.swing.JButton bt_inicio;
     private javax.swing.JButton bt_proceso;
+    private javax.swing.JButton btn_crearmetodo;
+    private javax.swing.JButton btn_crearpropiedad;
+    private javax.swing.JComboBox<String> cb_return;
+    private javax.swing.JComboBox<String> cb_tipo;
+    private javax.swing.JComboBox<String> cb_visibilidad;
+    private javax.swing.JComboBox<String> cb_visivilidad2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
+    private javax.swing.JMenu jMenu12;
+    private javax.swing.JMenu jMenu13;
+    private javax.swing.JMenu jMenu14;
+    private javax.swing.JMenu jMenu15;
+    private javax.swing.JMenu jMenu16;
+    private javax.swing.JMenu jMenu17;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar10;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuBar jMenuBar3;
+    private javax.swing.JMenuBar jMenuBar4;
+    private javax.swing.JMenuBar jMenuBar5;
+    private javax.swing.JMenuBar jMenuBar6;
+    private javax.swing.JMenuBar jMenuBar7;
+    private javax.swing.JMenuBar jMenuBar8;
+    private javax.swing.JMenuBar jMenuBar9;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JDialog jd_atributos;
     private javax.swing.JDialog jd_diagramas;
     private javax.swing.JDialog jd_herencia;
+    private javax.swing.JDialog jd_metodos;
     private javax.swing.JDialog jd_verCodigo;
+    private javax.swing.JList<String> jl_hijo;
+    private javax.swing.JList<String> jl_padre;
     private javax.swing.JPanel jp_UML;
     private javax.swing.JPanel jp_diagrama;
     private javax.swing.JTree jt_clases;
@@ -1248,13 +2249,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mi_agregarMetodo;
     private javax.swing.JMenuItem mi_agregaratributo;
     private javax.swing.JMenuItem mi_copiar;
-    private javax.swing.JMenuItem mi_datosAtributo;
-    private javax.swing.JMenuItem mi_descripcionMetodo;
     private javax.swing.JMenuItem mi_eliminarArbol;
     private javax.swing.JMenuItem mi_eliminarAtributo;
     private javax.swing.JMenuItem mi_eliminarMetodo;
+    private javax.swing.JMenuItem mi_pegar;
     private javax.swing.JTextField tf_clase;
+    private javax.swing.JTextField tf_metodo;
+    private javax.swing.JTextField tf_variable;
     private javax.swing.JTextArea tp_codigo;
+    private javax.swing.JTextArea tp_uml;
     // End of variables declaration//GEN-END:variables
     Clase Seleccionada;
     ArrayList<Clase> clases=new ArrayList();
@@ -1267,10 +2270,17 @@ public class Principal extends javax.swing.JFrame {
     int contComponentes=1;
     int contV=1;
     int contH=1;
+    ArrayList<JLabel>pegar=new ArrayList();
+    ArrayList<JPanel>pegar1=new ArrayList();
     int contArboles=0;
+    JDialog DialogActual;
     Diagrama ArbolActual;
     Propiedad propiedad;
+    JPanel selec = null;
+    Metodo M_Actual;
+    ArrayList<Atributo> PARAMETROS = new ArrayList();
     Metodo MetodoActual;
     DefaultMutableTreeNode nodo_seleccionado;
     ArrayList<JLabel> labels = new ArrayList();
+    Atributo global;
 }

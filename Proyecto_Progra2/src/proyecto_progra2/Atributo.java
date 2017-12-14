@@ -12,42 +12,55 @@ import java.io.Serializable;
  * @author JSantos
  */
 public class Atributo implements Serializable{
-    private String nombre;
-    private String tipo;
-    private String alcance;
-    private static final long SerialVersionUID=7857L;
-
-    public Atributo() {
+    Object Valor;
+     String Nombre;
+    Object tipo;
+   String Alcance;
+ private static final long SerialVersionUID=262626L;
+    public String getAlcance() {
+        return Alcance;
     }
 
-    public Atributo(String nombre, String tipo, String alcance) {
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.alcance = alcance;
+
+    public void setAlcance(String Alcance) {
+        this.Alcance = Alcance;
+    }
+
+    public Atributo() {
+        
+    }
+    
+     public Atributo(String n) {
+         Nombre=n;      
+    }
+
+    public Object getValor() {
+        return Valor;
+    }
+
+    public void setValor(Object Valor) {
+        this.Valor = Valor;
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
-    public String getTipo() {
+    public Object getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Object tipo) {
         this.tipo = tipo;
     }
 
-    public String getAlcance() {
-        return alcance;
-    }
-
-    public void setAlcance(String alcance) {
-        this.alcance = alcance;
+    @Override
+    public String toString() {
+        return "("+tipo+')'+Nombre;
     }
     
     

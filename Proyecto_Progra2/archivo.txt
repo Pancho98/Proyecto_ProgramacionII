@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int main(){
- int x,  y;
+ cout<< num1<<endl;
  system("pause");
  return 0;
 }

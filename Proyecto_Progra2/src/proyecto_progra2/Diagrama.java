@@ -38,7 +38,7 @@ public class Diagrama extends JTree implements Serializable{
                 }
             }
         }
-        String Codigo="//-----------------------------Inicio de Clase----------------------------\n"
+        String Codigo=""
                 + "#include<iostream>\n"
                 + " #include <string> \n"
                 + " using namespace std;\n"
@@ -95,7 +95,7 @@ public class Diagrama extends JTree implements Serializable{
         Constructores+=clase.getNombre()+"("+Constructor_l+");\n"+
             Constructor+"\n\n";
         Constructores+="//Destructor\n ~"+clase.getNombre()+"();\n\n};\n";
-        Codigo+= Public + Private + Protected + Constructores+"\n//----------------------------Fin de Clase----------------------------";
+        Codigo+= Public + Private + Protected + Constructores;
         return Codigo;
     }
     

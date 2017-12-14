@@ -50,12 +50,29 @@ public class Clase implements Serializable{
         this.herencia = herencia;
     }
 
+    public void AnadirHerencia(Clase c) {
+        this.herencia.add(c);
+    }
+    
+    public void AnadirAtributo(Atributo a) {
+        this.atributos.add(a);
+    }
+    
+    public void AnadirMetodo(Metodo m) {
+        this.metodos.add(m);
+    }
+    
     public ArrayList<Metodo> getMetodos() {
         return metodos;
     }
 
     public void setMetodos(ArrayList<Metodo> metodos) {
         this.metodos = metodos;
+    }
+
+    @Override
+    public String toString() {
+        return Nombre;
     }
     
     
